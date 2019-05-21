@@ -10,16 +10,16 @@ const isPowerOfTwo = (n) => {
   // recurse some more
   if (n === 1 || n === 2) return true;
   function helper(num) {
-    let current = num / 2;
+    const current = num / 2;
     if (!Number.isInteger(current) || current <= 0) return false;
     if (current === 2) return true;
     return helper(current);
   }
-  return helper(n)
+  return helper(n);
 };
 
-console.log( '-->', isPowerOfTwo(2)); // true
-console.log( '-->', isPowerOfTwo(218)); // false
-console.log( '-->', isPowerOfTwo(1)); // true
-console.log( '-->', isPowerOfTwo(-90)); // false
-console.log( '-->', isPowerOfTwo(16)); // true
+isPowerOfTwo(2); // true
+isPowerOfTwo(218); // false
+isPowerOfTwo(1); // true
+isPowerOfTwo(-90); // false
+isPowerOfTwo(16); // true
