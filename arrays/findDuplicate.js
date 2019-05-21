@@ -1,3 +1,4 @@
+/* eslint-disable */
 const findDuplicate = (nums) => {
   nums = nums.sort((a,b) => {
     return a - b;

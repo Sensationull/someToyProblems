@@ -1,3 +1,8 @@
+/* eslint-disable */
+/* 
+  don't need the error reminders for reduce,
+  stylistically reduce can reassign it's accumulator 
+*/
 function missingInteger(A) {
     /*
       input: array
@@ -36,6 +41,6 @@ function missingInteger(A) {
         return largest - current;
       }
     }
-    return largest + 1
+    return largest + 1;
   }
 }
