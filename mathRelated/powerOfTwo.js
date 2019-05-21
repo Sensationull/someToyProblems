@@ -3,11 +3,11 @@ const isPowerOfTwo = (n) => {
   // create a recursive function that takes in a number
   // divide that number by two
   // if that number is not an int or zero,
-    // return false
-  // if that number is 2 
-    // return true
+  // return false
+  // if that number is 2
+  // return true
   // else
-    // recurse some more
+  // recurse some more
   if (n === 1 || n === 2) return true;
   function helper(num) {
     let current = num / 2;
