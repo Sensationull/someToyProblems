@@ -37,5 +37,4 @@ const preorder = (root) => {
   return arr;
 };
 
-console.log(preorder(nTree1));
-console.log(nTree1);
+preorder(nTree1); // [1,3,5,6,2,4];
