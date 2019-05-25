@@ -15,7 +15,7 @@ const postorderTraversal = (root) => {
   */
   const result = [];
   const helper = (node) => {
-    if (!node) return
+    if (!node) return;
     if (!node.children) {
       result.push(node.val);
       return;
@@ -31,4 +31,4 @@ const postorderTraversal = (root) => {
   return result;
 };
 
-console.log( '-->', postorderTraversal(nTree1));
+console.log('-->', postorderTraversal(nTree1));
