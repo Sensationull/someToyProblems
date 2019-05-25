@@ -34,10 +34,10 @@ const nTree2 = new TreeNode(2);
 const nTree3 = new TreeNode(3);
 const nTree4 = new TreeNode(4);
 const nTree5 = new TreeNode(5);
+const nTree6 = new TreeNode(6);
 
-nTree1.children = [nTree2, nTree3];
-nTree2.children = [nTree4];
-nTree3.children = [nTree5];
+nTree1.children = [nTree3, nTree2, nTree4];
+nTree3.children = [nTree5, nTree6];
 
 module.exports = {
   bTreeRoot1,
