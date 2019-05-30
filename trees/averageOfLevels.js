@@ -46,4 +46,24 @@ var averageOfLevels = function(tree) {
   return result;
 };
 
-averageOfLevels(root) // [3, 14.5, 11];
+// averageOfLevels(root) // [3, 14.5, 11];
+
+/* bfs solution */
+
+var averageOfLevels = function(root) {
+  const queue=[], resArr=[];
+  if(!root) return [];
+  queue.push(root);
+    while(queue.length>0) {
+    let length=queue.length;
+    let sum = 0;
+      for (var i=0; i< length; i++) {
+        let tempNode=queue.shift();
+        if (tempNode.left !== null) queue.push(tempNode.left); 
+        if (tempNode.right !== null) queue.push(tempNode.right);
+        sum += tempNode.val;
+      }
+      resArr.push(sum/length);
+    }
+  return resArr;
+};
