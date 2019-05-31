@@ -29,18 +29,30 @@ bTreeRoot2.right = three2;
 one.right = four;
 three2.right = seven;
 
-const nTree1 = new TreeNode(1);
-const nTree2 = new TreeNode(2);
-const nTree3 = new TreeNode(3);
-const nTree4 = new TreeNode(4);
-const nTree5 = new TreeNode(5);
-const nTree6 = new TreeNode(6);
+const nTree1 = new Node(1);
+const nTree2 = new Node(2);
+const nTree3 = new Node(3);
+const nTree4 = new Node(4);
+const nTree5 = new Node(5);
+const nTree6 = new Node(6);
 
 nTree1.children = [nTree3, nTree2, nTree4];
 nTree3.children = [nTree5, nTree6];
+
+const bTreeRoot3 = new TreeNode(3);
+const nine = new TreeNode(9);
+const twenty = new TreeNode(20);
+const fifteen = new TreeNode(15);
+const ninety = new TreeNode(90);
+
+bTreeRoot3.left = nine;
+bTreeRoot3.right = twenty;
+twenty.left = fifteen;
+twenty.right = ninety;
 
 module.exports = {
   bTreeRoot1,
   bTreeRoot2,
   nTree1,
+  bTreeRoot3,
 };
