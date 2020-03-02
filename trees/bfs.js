@@ -21,3 +21,14 @@ const breadthFirstSearch = (root) => {
 console.log(breadthFirstSearch(bTreeRoot1)); // [1,3,2,5]
 console.log(breadthFirstSearch(bTreeRoot2)); // [2,1,3,4,7]
 console.log(breadthFirstSearch(bTreeRoot3)); // [3,9,20,15,90]
+
+
+// const sum = (x) => {
+//   const sumIt = y => x + y;
+//   return sumIt;
+// };
+
+// const sumA = sum(4);
+// const sumB = sumA(3);
+
+// console.log(sumA, sumB);
