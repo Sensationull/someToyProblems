@@ -29,3 +29,17 @@ const inorderTraversal = (root) => {
 };
 
 console.log(inorderTraversal(nTree1));
+
+const inorderBST = (root) => {
+  let result = [];
+  
+  const search = (node) => {
+    if (node !== null) {
+      search(node.left);
+      result.push(node.val);
+      search(node.right);
+    }
+  }
+
+  return result;
+}
