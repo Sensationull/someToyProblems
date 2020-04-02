@@ -16,9 +16,6 @@ var maxSubArray = function(nums) {
       if the temp sum is greater than the max sum, make the max sum the temp sum
       if the temp sum is less than the max sum, make the temp sum the value at 
   */
-  
-  let start = 0;
-  let stop = 0;
   let sum = nums[0];
   let max = nums[0];
   
