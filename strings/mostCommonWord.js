@@ -27,6 +27,6 @@ let largestKey = ''
   return largestKey
 };
 
-console.log(findMostCommonWord("abc abc? abcd the jeff!", ["abc","abcd","jeff"]));
-console.log(findMostCommonWord("Bob. hIt, baLl", ['hit', 'bob']))
-console.log(findMostCommonWord("a, a, a, a, b,b,b,c, c", ['a']))
+console.log(mostCommonWord("abc abc? abcd the jeff!", ["abc","abcd","jeff"]));
+console.log(mostCommonWord("Bob. hIt, baLl", ['hit', 'bob']))
+console.log(mostCommonWord("a, a, a, a, b,b,b,c, c", ['a']))
