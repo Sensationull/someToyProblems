@@ -33,7 +33,8 @@ var increasingBST = function(root) {
         if (node.right) dfs(node.right)
     }
     dfs(root)
-    arr.sort((a,b) => a.val - b.val );
+    arr.sort((a,b) => a.val - b.val);
+    // I guess BSTs don't need to be sorted
     root = arr[0];
     root.right = arr[1];
     root.left = null;
