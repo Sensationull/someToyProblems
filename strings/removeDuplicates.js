@@ -40,3 +40,22 @@ var removeDuplicates = function(S) {
   }
   return S
 };
+
+// faster solution
+
+var removeDuplicates = function(S) {
+  let length = S.length;
+  let string = [S[0]];
+  let index = 0;
+  for (let i = 1; i < length; i++) {
+      let letter = S[i];
+      if (string[index] === S[i]) {
+          string.pop();
+          index -= 1;
+          continue;
+      };
+      string.push(letter);
+      index += 1;
+  };
+  return string.join('');
+};
