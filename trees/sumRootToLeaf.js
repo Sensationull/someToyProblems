@@ -10,38 +10,31 @@
  * @param {TreeNode} root
  * @return {number}
  */
-var sumRootToLeaf = function(root) {
-  /*
-      I: a tree
-      O: a number
-      C: none
-      E: invalid root
-      
-      
-      create sum
-      dfs
-      if ! node return
-      push node value to arr
-      if node left call node left
-      if node right call node right
-      if no node left or right
-          convert arr into string, then into number
-          parse int number to radix 2 then add to sum
-          return
-      return sum
-  */
-  if (!root) return 0;
-   let res = 0;
-  let DFS = (root, S) => {
-      if(!root) return;
-      S += root.val;
-      if(!root.left && !root.right) {
-          res += parseInt(S, 2);
-          return;
-      }
-      DFS(root.left, S);
-      DFS(root.right, S);
-  }
-  DFS(root, '');
-  return res;
+var sumNumbers = function(root) {
+    /*
+        I: root
+        O: number;
+        C: none
+        E: invalid root
+        create sum var
+        create dfs helper pass node and string
+    */
+    let total = 0;
+    let dfs = (node, path) => {
+        if (!node) {
+            return    
+        }
+        path += node.val
+        if (!node.left && !node.right) {
+            total += parseInt(path);
+        }
+        if (node.left) {
+            dfs(node.left, path)
+        }
+        if (node.right) {
+            dfs(node.right, path)
+        }
+    }
+    dfs(root, '');
+    return total
 };
