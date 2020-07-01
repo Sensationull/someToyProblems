@@ -16,3 +16,8 @@ var stringMatching = function(words) {
   
   return result;
 };
+
+
+let a = 1;
+console.log(a);
+console.log(a++);
