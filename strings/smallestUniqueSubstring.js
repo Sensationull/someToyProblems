@@ -46,10 +46,15 @@ function getShortestUniqueSubstring(array, string) {
   }
   let shortest = string.length;
 
+  for (let char of array) {
+    if (!string.includes(char)) {
+      return ""
+    }
+  }
+
   for (let i = 0; i < string.length; i++) {
     let char = string[i];
     if (array.includes(char)) {
-      // console.log(string.slice(i), i);
       substringSearch(string.slice(i),array, '');
     }
   }
@@ -77,4 +82,5 @@ function getShortestUniqueSubstring(array, string) {
 }
 
 console.log(getShortestUniqueSubstring(['x','y','z'], 'xyyzyzyx')) // zyx
+console.log(getShortestUniqueSubstring(['x','y','z', 'r'], 'xyyzyzyx')) // ''
 console.log(getShortestUniqueSubstring(['c','d','e'],"pewpewcod") ) //"ewcod"
