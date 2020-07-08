@@ -26,7 +26,7 @@ function parensChecker(str) {
     }
     i++;
   }
-  console.log(parenDepthCount);
+  if (parenDepthCount !== 0) return false;
   return true;
 }
 
@@ -58,6 +58,20 @@ const OPERATOR = 'Operator';
  * ]
  *
  */
+const allOperations = {
+  '+': (AST) => {
+    return getNodeValue(AST.left) + getNodeValue(AST.right)
+  },
+  '-': (AST) => {
+    return getNodeValue(AST.left) - getNodeValue(AST.right)
+  },
+  '*': (AST) => {
+    return getNodeValue(AST.left) * getNodeValue(AST.right)
+  },
+  '/': (AST) => {
+    return getNodeValue(AST.left) / getNodeValue(AST.right)
+  },
+};
 function tokenizer(str) {
   const tokens = [];
   const len = str.length;
@@ -76,7 +90,7 @@ function tokenizer(str) {
       tokens.push({type:CLOSE_PAREN});
       continue;
     }
-    if (c === '+' || c === '*') {
+    if (allOperations[c]) {
       tokens.push({type:OPERATOR, value: c});
       continue;
     }
@@ -116,11 +130,13 @@ function charIsNum(c) {
  * are parenthesis
  * @param expression
  */
+
 function arthematicTreeMaker(expression) {
   if (!parensChecker(expression)) throw Error("Parenthesis mismatch");
   const tokens = tokenizer(expression);
   return arthematicTreeMakerFromTokens(tokens)
 }
+
 function arthematicTreeMakerFromTokens(tokens, tracker = {tokenIndex: 0}) {
     if (!tokens.length) return;
     const token = tokens[tracker.tokenIndex];
@@ -170,16 +186,25 @@ function calculate(expression) {
 function getNodeValue(AST) {
   if(typeof AST === 'object') {
     const operator = AST.operator;
-    if(operator === '+') {
-      return getNodeValue(AST.left) + getNodeValue(AST.right);
-    }
-    if(operator === '*') {
-      return getNodeValue(AST.left) * getNodeValue(AST.right);
-    }
+    
+    return allOperations[operator](AST);
+    
+    // if(operator === '+') {
+    //   return getNodeValue(AST.left) + getNodeValue(AST.right);
+    // }
+    // if(operator === '*') {
+    //   return getNodeValue(AST.left) * getNodeValue(AST.right);
+    // }
+    // if(operator === '-') {
+    //   return getNodeValue(AST.left) - getNodeValue(AST.right);
+    // }
   }
   //It's a value if it isn't an object. EZ.
   return AST;
 }
 
 // console.log("calculate('(3*1)+2')\n", calculate('(3*1)+2'));
-// console.log("calculate('3*(1+2)')\n", calculate('3*(1+2)'));
+console.log("calculate('3*(1+2)')\n", calculate('3*(1+2)'));
+console.log("calculate('3*(1-2)')\n", calculate('3*(1-2)'));
+console.log("calculate('3*(1-2)')\n", calculate('3*(2/2)'));
+console.log("calculate('3*(1-2)')\n", calculate('3*(1/2)'));
