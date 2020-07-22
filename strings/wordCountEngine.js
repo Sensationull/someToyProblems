@@ -99,3 +99,78 @@ function wordCountEngine(document) {
 }
 
 console.log(wordCountEngine("Practice makes perfect. you'll only get Perfect by practice. just practice!"));
+/*
+
+function wordCountEngine(document) {
+  /*
+    Inputs: a string
+    Outputs: a matrix;
+    Constraints: none
+    Edge Caes: empty doc
+    
+    clean the string
+    "Practice makes perfect. you'll only get Perfect by practice. just practice!" 
+    =>
+    "practice makes perfect youll only get perfect by practice just practice"
+    count the occurences by creating a hashmap
+      word: [timesSeen, first index];
+      practice: [3, 0];
+    create a separate hashmap focusing on the number of times
+      timesSeen: [word, word, word]
+      1: [makes, youll, get];
+    for each item in the second hash map 
+      if the item has more than 1 entry
+        sort the items by index position in first hashmap
+     create a for loop
+      if the item only has an array of length one, 
+        push the item into the array via [word, count]
+      if the item has larger than array length 1
+        for each item push into the array in the same fashion
+    return result;
+  
+  
+ const cleaned = document.replace(/[^\w\s]|_/g, "").replace(/\s+/g, " ").toLowerCase();
+ let arr = cleaned.split(' ');
+ const result = [];
+ let wordCountAndPosition = {};
+ for (let i = 0; i < arr.length; i++) {
+   if (!wordCountAndPosition[arr[i]]) {
+     wordCountAndPosition[arr[i]] = [1, i];
+   } else {
+     wordCountAndPosition[arr[i]][0] = wordCountAndPosition[arr[i]][0] + 1;
+   }
+ }
+ let timesSeen = {};
+ for (let key in wordCountAndPosition) {
+   if (!timesSeen[wordCountAndPosition[key][0]]) {
+     timesSeen[wordCountAndPosition[key][0]] = [key];
+   } else {
+     timesSeen[wordCountAndPosition[key][0]].push(key);
+   }
+ }
+
+ for (let item in timesSeen) {
+   if (timesSeen[item].length > 1) {
+     timesSeen[item].sort(function (a,b) {
+        return wordCountAndPosition[a][1] - wordCountAndPosition[b][1];
+     })
+   }
+ }
+
+ for (let entry in timesSeen) {
+   if (timesSeen[entry].length === 1) {
+     result.push([timesSeen[entry][0], entry]);
+   } else {
+     for (let word of timesSeen[entry] ) {
+       result.push([word, entry]);
+     }
+   }
+ }
+ 
+ return result.reverse();
+}
+
+const test = "Practice makes perfect. you'll only get Perfect by practice. just practice!"
+
+console.log(wordCountEngine(test));
+*/
