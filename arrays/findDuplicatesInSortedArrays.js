@@ -114,3 +114,16 @@ function findDuplicates(arr1, arr2) {
 }
 
 console.log(findDuplicates([1, 2, 3, 5, 6, 7],[3, 6, 7, 8, 20]));
+
+// const findDuplicates = (arr1, arr2) => {
+//   const dupes = new Set(arr1);
+//   const result = [];
+//   for (let item of arr2) {
+//     if (dupes.has(item)) {
+//       result.push(item);
+//     }
+//   }
+//   return result;
+// }
+
+// console.log(findDuplicates([1,2,3,4,5,6,7], [3,6,7,8,20])) // [3,6,7]
