@@ -127,3 +127,51 @@ console.log(findDuplicates([1, 2, 3, 5, 6, 7],[3, 6, 7, 8, 20]));
 // }
 
 // console.log(findDuplicates([1,2,3,4,5,6,7], [3,6,7,8,20])) // [3,6,7]
+
+// function findDuplicates(arr1, arr2) {
+//   // your code goes here
+  
+//   let map = new Map();
+//   let result = [];
+  
+//   for (let i=0; i<arr1.length; i++) {
+//     if (!map.has(arr1[i]) ) {
+//       map.set(arr1[i], 1);
+//     }
+//   }
+  
+//   for (let j=0; j<arr2.length; j++) {
+//     if (map.has(arr2[j])) {
+//       result.push(arr2[j])
+//     }
+//   }
+    
+//   return result;
+// }
+
+// console.log(findDuplicates([1, 2, 3, 5, 6, 7], [3, 6, 7]));
+
+function findDuplicates2(arr1, arr2) {
+  let smallerArr = arr2.length < arr2.length ? arr1 : arr2;
+  let largerArr = arr2.length > arr2.length ? arr1 : arr2;
+  let results = [];
+  let left = 0;
+  
+  let i = 0;
+  let j = 0;
+  while (i < smallerArr.length && j < largerArr.length) {
+    if (smallerArr[i] > largerArr[j]) {
+      j++;
+    } else if (smallerArr[i] < largerArr[j]) {
+      i++;
+    } else {
+      results.push(smallerArr[i]);
+      i++;
+      j++;
+    }
+  }
+  
+  return results;
+}
+
+console.log(findDuplicates2([1, 2, 3, 5, 6, 7], [3, 6, 7]));
