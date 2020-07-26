@@ -57,21 +57,21 @@ class Board {
 
 const test = new Board;
 test.dropToken(0, 'X');
+test.dropToken(0, '0');
 test.dropToken(0, 'X');
-test.dropToken(0, 'X');
-test.dropToken(0, 'X');
+test.dropToken(0, '0');
 test.dropToken(1, 'X');
+test.dropToken(1, '0');
 test.dropToken(1, 'X');
-test.dropToken(1, 'X');
-test.dropToken(1, 'X');
+test.dropToken(1, '0');
 test.dropToken(2, 'X');
+test.dropToken(2, '0');
 test.dropToken(2, 'X');
-test.dropToken(2, 'X');
-test.dropToken(2, 'X');
+test.dropToken(2, '0');
 test.dropToken(3, 'X');
+test.dropToken(3, '0');
 test.dropToken(3, 'X');
-test.dropToken(3, 'X');
-test.dropToken(3, 'X');
+test.dropToken(3, '0');
 console.log(test.dropToken(5, 'X'));
 console.log('is valid a valid move', test.isValid(0))
 console.log('is the board full? ',test.isBoardFull())
