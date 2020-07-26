@@ -1,4 +1,4 @@
-function wordCountEngine(document) {
+// function wordCountEngine(document) {
   /*
     I: string
     O: a matrix of strings and their counts
@@ -48,55 +48,54 @@ function wordCountEngine(document) {
     [practice, 23] []
   */
  
-  const result = [];
-  const temp = [];
+//   const result = [];
   
-  let newDoc = document.replace(/[^\w\s]|_/g, "").replace(/\s+/g, " ");
-  let cleaned = newDoc.toLowerCase();
-  let words = cleaned.split(' ');
-  let wordCounts = {};
+//   let newDoc = document.replace(/[^\w\s]|_/g, "").replace(/\s+/g, " ");
+//   let cleaned = newDoc.toLowerCase();
+//   let words = cleaned.split(' ');
+//   let wordCounts = {};
   
-  for (let i = 0; i < words.length; i++) {
-    let word = words[i];
-    if (!word) continue;
-    if (!wordCounts[word]) {
-      wordCounts[word] = [1, i];
-    } else {
-      wordCounts[word][0]++;
-    }
-  }
+//   for (let i = 0; i < words.length; i++) {
+//     let word = words[i];
+//     if (!word) continue;
+//     if (!wordCounts[word]) {
+//       wordCounts[word] = [1, i];
+//     } else {
+//       wordCounts[word][0]++;
+//     }
+//   }
 
-  let occurences = {};
-  let highest = 0;
-  for (let word in wordCounts) {
-    let count = wordCounts[word][0];
-    if (!occurences[count]) {
-      highest = highest > count ? highest : count
-      occurences[count] = [word];
-    } else {
-      occurences[count].push(word);
-    }
-  }
+//   let occurences = {};
+//   let highest = 0;
+//   for (let word in wordCounts) {
+//     let count = wordCounts[word][0];
+//     if (!occurences[count]) {
+//       highest = highest > count ? highest : count
+//       occurences[count] = [word];
+//     } else {
+//       occurences[count].push(word);
+//     }
+//   }
   
-  for (let i = highest; i > 0; i-- ) {
-    if (!occurences[i]) {
-      continue;
-    }
-    if (occurences[i] && occurences[i].length === 1) {
-       result.push([occurences[i][0], `${i}`]);
-    } 
-    if (occurences[i] && occurences[i].length > 1) {
-      let sorted = occurences[i].sort((a,b) => {
-        wordCounts[a][1] - wordCounts[b][1]
-      })
-      for (let item of sorted ) {
-       result.push([item, `${i}`]);
-      }
-    }
-  }
+//   for (let i = highest; i > 0; i-- ) {
+//     if (!occurences[i]) {
+//       continue;
+//     }
+//     if (occurences[i] && occurences[i].length === 1) {
+//        result.push([occurences[i][0], `${i}`]);
+//     } 
+//     if (occurences[i] && occurences[i].length > 1) {
+//       let sorted = occurences[i].sort((a,b) => {
+//         wordCounts[a][1] - wordCounts[b][1]
+//       })
+//       for (let item of sorted ) {
+//        result.push([item, `${i}`]);
+//       }
+//     }
+//   }
   
-  return result;
-}
+//   return result;
+// }
 
 console.log(wordCountEngine("Practice makes perfect. you'll only get Perfect by practice. just practice!"));
 /*
@@ -174,3 +173,81 @@ const test = "Practice makes perfect. you'll only get Perfect by practice. just 
 
 console.log(wordCountEngine(test));
 */
+
+function wordCountEngine(document) {
+
+  const result = [];
+    
+    let newDoc = document.replace(/[^\w\s]|_/g, "").replace(/\s+/g, " ");
+    let cleaned = newDoc.toLowerCase();
+    let words = cleaned.split(' ');
+    let wordCounts = {};
+    
+    for (let i = 0; i < words.length; i++) {
+      let word = words[i];
+      if (!word) continue;
+      if (!wordCounts[word]) {
+        wordCounts[word] = [1, i];
+      } else {
+        wordCounts[word][0]++;
+      }
+    }
+  
+    let occurences = {};
+    let highest = 0;
+    for (let word in wordCounts) {
+      let count = wordCounts[word][0];
+      if (!occurences[count]) {
+        highest = highest > count ? highest : count
+        occurences[count] = [word];
+      } else {
+        occurences[count].push(word);
+      }
+    }
+    
+    for (let i = highest; i >= 0; i-- ) {
+      if (!occurences[i]) {
+        continue;
+      }
+      if (occurences[i] && occurences[i].length === 1) {
+         result.push([occurences[i][0], `${i}`]);
+      } 
+      if (occurences[i] && occurences[i].length > 1) {
+        const quickSort = arr => {
+          if (arr.length <= 1) {
+            return arr;
+          }
+          
+          const less = [];
+          const greater = [];
+          const pivot = arr.pop();
+          
+          for (let word of arr) {
+            if (wordCounts[word][1] <= wordCounts[pivot][1]) {
+              less.push(word);
+            } else {
+              greater.push(word);
+            }
+          }
+          return [...quickSort(less), pivot, ...quickSort(greater)];
+        }
+        const quick = quickSort(occurences[i]);
+        for (let item of quick ) {
+         result.push([item, `${i}`]);
+        }
+      }
+    }
+    
+    return result;
+  }
+  
+  const test = "Practice makes perfect. you'll only get Perfect by practice. just practice!"
+  // [["just","4"],["practice","3"],["perfect","2"],["makes","1"],["youll","1"],["get","1"],["by","1"]]
+  const test2 =  "Every book is a quotation; and every house is a quotation out of all forests, and mines, and stone quarries; and every man is a quotation from all his ancestors. "
+  // [["and","4"],["every","3"],["is","3"],["a","3"],["quotation","3"],["all","2"],["book","1"],["house","1"],["out","1"],["of","1"],["forests","1"],["mines","1"],["stone","1"],["quarries","1"],["man","1"],["from","1"],["his","1"],["ancestors","1"]]
+  const test3 = "Look If you had One shot, Or one opportunity, To seize everything you ever wanted, In one moment, Would you capture it, Or just let it slip?"
+  // [["you","3"],["one","3"],["or","2"],["it","2"],["look","1"],["if","1"],["had","1"],["shot","1"],["opportunity","1"],["to","1"],["seize","1"],["everything","1"],["ever","1"],["wanted","1"],["in","1"],["moment","1"],["would","1"],["capture","1"],["just","1"],["let","1"],["slip","1"]]
+  const test4 = "Cause I'm Slim Shady, yes I'm the real Shady, All you other Slim Shadys are just imitating So won't the real Slim Shady, please stand up, Please stand up, Please stand up"
+  // [["slim","3"],["shady","3"],["please","3"],["stand","3"],["up","3"],["im","2"],["the","2"],["real","2"],["cause","1"],["yes","1"],["all","1"],["you","1"],["other","1"],["shadys","1"],["are","1"],["just","1"],["imitating","1"],["so","1"],["wont","1"]]
+  
+  console.log(wordCountEngine(test));
