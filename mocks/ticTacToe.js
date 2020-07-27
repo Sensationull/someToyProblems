@@ -27,6 +27,16 @@ class ticTacToe {
     return true;
   }
 
+  isGameOver() {
+    /*
+      check the state of the board to see if three adjacent tiles all have the same character
+      or either of the diagonals have the same characters
+      create a flag
+      iterate through each row
+    */
+    if (this.isBoardFull()) return true;
+  }
+
   isValid(row, col) {
     if (this.board[row][col] !== '-') return false;
     return true;
