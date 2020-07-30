@@ -1,0 +1,118 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.2.0/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <style>
+      
+      /* ===================== START: Your CSS here */
+      
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      body {
+        background-color: #1d2126;
+        color: white;
+      }
+      img {
+        width: 200px;
+      }
+      .test{
+        background: white;
+        color: black;
+      }
+      
+      .card-container {
+        height: 200px;
+        width: 200px;
+        background-color: white;
+        border-radius: 5%;
+      }
+      
+      .card-image {
+        color: black;
+      }
+      
+      .large {
+      
+        font-size: 120px;
+        position: relative;
+        left: 50px;
+      }
+      
+      .card-number {
+        color: black;
+      }
+      
+      
+      .upside-down {
+        position: relative;
+        top: -20px;
+        left: 160px;
+        transform: rotateX(180deg);
+      }
+      
+      
+      
+      /* ===================== END: Your CSS here */
+      
+    </style>
+    <script type="text/jsx">
+      
+      /*
+        suit class that represents the suit image
+      */
+
+      // ========================== START: Your JSX here
+      class Card extends React.Component {
+        
+        render() {
+          return (
+             <div>
+                <h1 className='test'>
+                  Hello, React! &spades; &diams; &hearts; &clubs;
+                </h1>
+                <p> Sample image: </p>
+              <div className="card-container"> 
+                <div className="card-number">A</div>
+                <div className="small card-image">&spades;</div>
+                <div className="large card-image">&spades;</div>
+                <div className="upside-down">
+                    <div className="card-number">A</div>
+                    <div className="small card-image">&spades;</div>
+                </div>
+            
+              </div>
+            </div>
+          )
+        }
+      }
+
+/*
+  make a new card class
+    a suit, the letter for that card
+*/
+      ReactDOM.render(<Card/>,
+        // <div>
+        //   <h1 className='test'>
+        //     Hello, React! {a} &spades; &diams; &hearts; &clubs;
+        //   </h1>
+        //   <p> Sample image: </p>
+        //   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Playing_card_spade_A.svg/819px-Playing_card_spade_A.svg.png"/>
+        // </div>,
+        document.getElementById('root')
+      );
+
+      // ========================== END: Your JSX here
+
+    </script>
+  </body>
+</html>
