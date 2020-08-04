@@ -16,3 +16,5 @@ var defangIPaddr = function(address) {
   }
   return temp;
 };
+
+defangIPaddr = (address) => address.replace(/\./g, '[.]');
